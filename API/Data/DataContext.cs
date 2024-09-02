@@ -1,7 +1,7 @@
-using API.Entities
+using API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Data
+namespace API.Data;
 
 public class DataContext(DbContextOptions options) : DbContext(options)
 {
