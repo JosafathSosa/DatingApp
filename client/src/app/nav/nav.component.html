@@ -4,6 +4,7 @@
       >Dating App</a
     >
 
+    @if(accountService.currentUser()){
     <ul class="navbar-nav me-auto mb-2 mb-md-0">
       <li class="nav-item">
         <a class="nav-link" routerLink="/members" routerLinkActive="active"
@@ -22,10 +23,10 @@
       </li>
     </ul>
 
-    @if(accountService.currentUser()){
+    } @if(accountService.currentUser()){
     <div dropdown class="dropdown">
       <a dropdownToggle class="dropdown-toggle text-light text-decoration-none"
-        >Welcome user</a
+        >Welcome {{ accountService.currentUser()?.username | titlecase }}</a
       >
       <div *bsDropdownMenu class="dropdown-menu">
         <a class="dropdown-item">Profile</a>
