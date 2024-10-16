@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using API.Extensions;
+using API.Middlewares;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,8 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 
 //Configure the HTTP request pipeline 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 
 
