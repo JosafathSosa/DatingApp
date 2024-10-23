@@ -1,5 +1,5 @@
 namespace API.Helpers;
-using API.DataEntities;
+using API.Entities;
 using API.DTOs;
 using AutoMapper;
 public class AutoMapperProfiles : Profile
