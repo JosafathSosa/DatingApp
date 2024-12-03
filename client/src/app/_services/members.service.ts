@@ -4,16 +4,19 @@ import { environment } from '../../environments/environment';
 import { Member } from '../_models/member';
 import { of, tap } from 'rxjs';
 
+import {HttpMetricsService} from "ngx-metrics-web"
+
 @Injectable({
   providedIn: 'root',
 })
 export class MembersService {
   private http = inject(HttpClient);
+  private httpMetricsService = inject(HttpMetricsService)
   baseUrl = environment.apiUrl;
   members = signal<Member[]>([]);
 
   getMembers() {
-    return this.http.get<Member[]>(this.baseUrl + "users").subscribe({
+    return this.httpMetricsService.get<Member[]>(this.baseUrl + "users").subscribe({
       next: members => this.members.set(members)
     });
   }
@@ -23,7 +26,7 @@ export class MembersService {
     if (member !== undefined) {
       return of(member);
     }
-    return this.http.get<Member>(this.baseUrl + "users/" + username);
+    return this.httpMetricsService.get<Member>(this.baseUrl + "users/" + username)
   }
 
   updateMember(member: Member) {

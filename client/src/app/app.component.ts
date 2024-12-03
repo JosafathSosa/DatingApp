@@ -6,6 +6,8 @@ import { AccountService } from './_services/account.service';
 import { HomeComponent } from './home/home.component';
 import { NgxSpinnerComponent } from 'ngx-spinner';
 
+import {AppStatusService} from "ngx-metrics-web"
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -15,9 +17,11 @@ import { NgxSpinnerComponent } from 'ngx-spinner';
 })
 export class AppComponent implements OnInit {
   private accountService = inject(AccountService);
+  private appStatus = inject(AppStatusService)
   title = 'Dating App';
 
   ngOnInit(): void {
+    this.appStatus.startTrackingStatus("Dating App Status", "Estado de la aplicación Dating App")
     this.setCurrentUser();
   }
 

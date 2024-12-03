@@ -5,6 +5,7 @@ import { NgIf, TitleCasePipe } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import {CustomErrorHandlerService} from "ngx-metrics-web"
 
 @Component({
   selector: 'app-nav',
@@ -22,6 +23,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavComponent {
   accountService = inject(AccountService);
+  private customErrorHandler = inject(CustomErrorHandlerService)
   private router = inject(Router);
   private toaster = inject(ToastrService);
   model: any = {};
@@ -32,6 +34,9 @@ export class NavComponent {
         this.router.navigateByUrl('members');
       },
       error: (error) => {
+        console.log(error);
+        
+        this.customErrorHandler.handleError(error)
         this.toaster.error(error.error);
       },
     });
