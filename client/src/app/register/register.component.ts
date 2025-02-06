@@ -2,6 +2,7 @@ import { Component, inject, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
+import { CustomErrorHandlerService } from 'ngx-metrics-web';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class RegisterComponent {
   private accountService = inject(AccountService);
   // usersFromHomeComponent = input.required<any>();
+  private customErrorHandlerService = inject(CustomErrorHandlerService);
   cancelRegister = output<boolean>();
   private toaster = inject(ToastrService);
   model: any = {};
@@ -23,6 +25,7 @@ export class RegisterComponent {
         this.cancel();
       },
       error: (error) => {
+        this.customErrorHandlerService.handleError(error.errors);
         this.toaster.error(error.errors);
       },
     });

@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.2.0",
+    "@angular/cdk": "^18.2.11",
     "@angular/common": "^18.2.0",
     "@angular/compiler": "^18.2.0",
     "@angular/core": "^18.2.0",
@@ -18,13 +19,20 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
+    "@opentelemetry/exporter-metrics-otlp-http": "^0.54.2",
+    "@opentelemetry/resources": "^1.27.0",
+    "@opentelemetry/sdk-metrics": "^1.27.0",
     "bootstrap": "^5.3.3",
     "bootswatch": "^5.3.3",
     "font-awesome": "^4.7.0",
+    "ng-gallery": "^12.0.0",
     "ngx-bootstrap": "^18.0.2",
+    "ngx-metrics-web": "file:ngx-metrics-web-1.0.0.tgz",
+    "ngx-spinner": "^17.0.0",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "web-vitals": "^4.2.4",
     "zone.js": "~0.14.10"
   },
   "devDependencies": {
