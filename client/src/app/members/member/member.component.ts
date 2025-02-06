@@ -17,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
   standalone: true,
   imports: [TabsModule, FormsModule],
   templateUrl: './member.component.html',
-  styleUrl: './member.component.css',
+  styleUrl: './member.component.css', 
 })
 export class MemberComponent implements OnInit {
   @ViewChild('editForm') editForm?: NgForm;
