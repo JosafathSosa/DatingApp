@@ -11,19 +11,20 @@ import { MembersService } from '../../_services/members.service';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { PhotoEditorComponent } from '../photo-editor/photo-editor.component';
 
 @Component({
   selector: 'app-member',
   standalone: true,
-  imports: [TabsModule, FormsModule],
+  imports: [TabsModule, FormsModule, PhotoEditorComponent],
   templateUrl: './member.component.html',
-  styleUrl: './member.component.css', 
+  styleUrl: './member.component.css',
 })
 export class MemberComponent implements OnInit {
   @ViewChild('editForm') editForm?: NgForm;
   @HostListener('window:beforeunload', ['event']) notify($event: any) {
     if (this.editForm?.dirty) {
-      $event.returnValue = true
+      $event.returnValue = true;
     }
   }
   member?: Member;
@@ -44,10 +45,10 @@ export class MemberComponent implements OnInit {
 
   updateMember() {
     this.membersService.updateMember(this.editForm?.value).subscribe({
-      next: _ => {
-        this.toastr.success("Profile updated!");
+      next: (_) => {
+        this.toastr.success('Profile updated!');
         this.editForm?.reset(this.member);
-      }
+      },
     });
   }
 }
