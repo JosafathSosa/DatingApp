@@ -51,4 +51,8 @@ export class MemberComponent implements OnInit {
       },
     });
   }
+
+  onMemberChange(event: Member) {
+    this.member = event;
+  }
 }
