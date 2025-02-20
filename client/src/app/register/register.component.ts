@@ -1,22 +1,28 @@
 import { Component, inject, input, OnInit, output } from '@angular/core';
 import {
   AbstractControl,
+  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   ValidatorFn,
   Validators,
-  FormBuilder,
 } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { JsonPipe, NgIf } from '@angular/common';
 import { TextInputComponent } from '../text-input/text-input.component';
+import { DatePickerComponent } from '../_forms/date-picker/date-picker.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, JsonPipe, TextInputComponent],
+  imports: [
+    ReactiveFormsModule,
+    JsonPipe,
+    TextInputComponent,
+    DatePickerComponent,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -27,9 +33,11 @@ export class RegisterComponent implements OnInit {
   cancelRegister = output<boolean>();
   model: any = {};
   registerForm: FormGroup = new FormGroup({});
+  maxDate = new Date();
 
   ngOnInit(): void {
     this.initializeForm();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
 
   initializeForm() {
@@ -49,11 +57,13 @@ export class RegisterComponent implements OnInit {
         [Validators.required, this.matchValues('password')],
       ],
     });
+
     this.registerForm.controls['password'].valueChanges.subscribe({
       next: () =>
         this.registerForm.controls['confirmPassword'].updateValueAndValidity(),
     });
   }
+
   matchValues(matchTo: string): ValidatorFn {
     return (control: AbstractControl) => {
       return control.value === control.parent?.get(matchTo)?.value
