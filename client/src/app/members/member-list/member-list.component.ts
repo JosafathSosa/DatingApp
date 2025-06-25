@@ -9,6 +9,7 @@ import { MembersService } from '../../_services/members.service';
 import { Member } from '../../_models/member';
 import { CommonModule } from '@angular/common';
 import { MemberCardComponent } from '../member-card/member-card.component';
+
 import { ComponentMetricsService, WebVitalsService } from 'ngx-metrics-web';
 
 @Component({
